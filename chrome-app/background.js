@@ -63,7 +63,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
 
       // Describe how to play in the header.
       var gameIntro = doc.querySelector(".game-intro");
-      gameIntro.innerHTML = "Merge numbers with arrow keys to get the <strong>2048 tile!</strong>"
+      gameIntro.innerHTML = "Merge numbers with arrow keys to get the <strong>4096 tile!</strong>"
 
       // Remove all content below the game.
       var gameContainer = doc.querySelector(".game-container");
