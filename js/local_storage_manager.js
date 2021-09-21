@@ -23,7 +23,8 @@ function LocalStorageManager() {
   this.gameStateKey     = "4096gameState";
 
   var supported = this.localStorageSupported();
-  this.storage = supported ? window.localStorage : window.fakeStorage;
+//  this.storage = supported ? window.localStorage : window.fakeStorage;
+  this.storage = backgroundPage.syncStorage;
 }
 
 LocalStorageManager.prototype.localStorageSupported = function () {
