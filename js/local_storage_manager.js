@@ -22,14 +22,14 @@ function LocalStorageManager() {
   this.bestScoreKey     = "4096bestScore";
   this.gameStateKey     = "4096gameState";
 
-  var supported = this.localStorageSupported();
+//  var supported = this.localStorageSupported();
 //  this.storage = supported ? window.localStorage : window.fakeStorage;
   this.storage = backgroundPage.syncStorage;
 }
 
 LocalStorageManager.prototype.localStorageSupported = function () {
   var testKey = "4096test";
-  var storage = window.localStorage;
+  var storage = backgroundPage.syncStorage;//window.localStorage;
 
   try {
     storage.setItem(testKey, "1");
