@@ -22,14 +22,18 @@ function LocalStorageManager() {
   this.bestScoreKey     = "4096bestScore";
   this.gameStateKey     = "4096gameState";
 
-//  var supported = this.localStorageSupported();
-//  this.storage = supported ? window.localStorage : window.fakeStorage;
-  this.storage = backgroundPage.syncStorage;
+  if (window.chrome && chrome.runtime && chrome.runtime.id) {
+    // Code running in a Chrome extension (content script, background page, etc.)
+    this.storage = backgroundPage.syncStorage;
+  } else {
+    var supported = this.localStorageSupported();
+    this.storage = supported ? window.localStorage : window.fakeStorage;
+  }
 }
 
 LocalStorageManager.prototype.localStorageSupported = function () {
   var testKey = "4096test";
-  var storage = backgroundPage.syncStorage;//window.localStorage;
+  var storage = (window.chrome && chrome.runtime && chrome.runtime.id) ? backgroundPage.syncStorage : window.localStorage;
 
   try {
     storage.setItem(testKey, "1");
